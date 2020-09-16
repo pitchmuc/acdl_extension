@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en" class="spectrum spectrum--medium spectrum--light">
+<head>
+    <meta charset="UTF-8">
+    <title>Adobe Client Data Layer - Computed State</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../common/spectrum/spectrum-global.css">
+    <link rel="stylesheet" href="../common/spectrum/spectrum-medium.css">
+    <link rel="stylesheet" href="../common/spectrum/spectrum-light.css">
+    <link rel="stylesheet" href="../common/spectrum/page-index-vars.css">
+    <link rel="stylesheet" href="../common/spectrum/textfield-index-vars.css">
+    <link rel="stylesheet" href="../common/spectrum/typography-index-vars.css">
+    <link rel="stylesheet" href="../common/spectrum/fieldlabel-index-vars.css">
+    <link rel="stylesheet" type="text/css" href="../common/acdl-styles.css">
+    <script src="https://assets.adobedtm.com/activation/reactor/extensionbridge/extensionbridge.min.js"></script>
+</head>
+<body>
+
+
+<!-------------------------------Section------------------------------->
+<h2 class="spectrum-Heading spectrum-Heading--L">Computed State Settings</h2><br>
+
+<p class="spectrum-Body spectrum-Body--M"><b>Returns the merged state of all pushed data.</b><br/><br/>
+    When calling using this data element without parameter, it returns the entire merged state of all pushed
+    data.<br/>
+    Optionally, a string can be passed to retrieve specific data.<br/>
+    This string supports the dot notation to specify an object path.
+</p>
+<br/>
+
+<form>
+    <label for="path" class="spectrum-FieldLabel"><strong>[Optional] Path:</strong></label>
+    <div class="spectrum-Textfield acdl-Textfield--long">
+        <input type="text" id="path" name="path" placeholder="specific.path.to.object"
+               class="spectrum-Textfield-input">
+    </div>
+</form>
+
+<script>
+    /**
+     * References to HTML elements
+     */
+    var pathE = document.getElementById('path');
+
+    /**
+     * Initialize the view, i.e. the elements with the stored settings.
+     * @param info Object containing all previously stored settings.
+     */
+    var initWithSettings = function (info) {
+        if (info.settings) {
+            try {
+                pathE.value = info.settings.path;
+            } catch
+                (e) {
+                console.warn('Could not init configuration: ' + e);
+            }
+        }
+    };
+
+    /**
+     * Function which returns the current settings as object.
+     * @returns {{Object}}
+     */
+    var getSettings = function () {
+        return {
+            path: pathE.value
+        };
+    };
+
+
+    /**
+     * Validator function to indicate whether or not the current settings are valid.
+     * @returns {boolean} True indicates "all good", false indicates that the input is invalid.
+     */
+    var validate = function () {
+        return true;
+    };
+
+    window.extensionBridge.register({
+        init: initWithSettings,
+        getSettings: getSettings,
+        validate: validate
+    });
+</script>
+</body>
+</html>

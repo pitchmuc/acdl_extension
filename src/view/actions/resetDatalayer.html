@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Adobe Client Data Layer - Reset Data Layer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="../common/acdl-styles.css">
+    <link rel="stylesheet" href="../common/spectrum/spectrum-global.css">
+    <link rel="stylesheet" href="../common/spectrum/spectrum-medium.css">
+    <link rel="stylesheet" href="../common/spectrum/spectrum-light.css">
+    <link rel="stylesheet" href="../common/spectrum/page-index-vars.css">
+    <link rel="stylesheet" href="../common/spectrum/typography-index-vars.css">
+    <link rel="stylesheet" href="../common/spectrum/button-index-vars.css">
+    <link rel="stylesheet" href="../common/spectrum/icon-index-vars.css">
+    <link rel="stylesheet" href="../common/spectrum/">
+    <script src="https://assets.adobedtm.com/activation/reactor/extensionbridge/extensionbridge.min.js"></script>
+</head>
+
+<body class="spectrum spectrum--medium spectrum--light">
+
+<!-------------------------------Section-----------------------------!-->
+<h2 class="spectrum-Heading spectrum-Heading--L">Reset ACDL Configuration</h2><br>
+
+<div class="spectrum-Body spectrum-Body--S">
+    <h5 class="spectrum-Heading spectrum-Heading--XS">This action will reset the Adobe Client Data Layer.</h5>
+    <br>
+    <p class="spectrum-Body spectrum-Body--S">You currently have only the option to keep the current Computed State (i.e.Array of size one) in the object.<br/>
+    Additional options (i.e. completely resetting the computedState to empty) may come in future releases.
+    </p>
+    <br>
+    <form class="spectrum-Form">
+        <input type="radio" id="reset-with-state" name="useComputedState" value="true" checked>
+        <label for="reset-with-state" class="spectrum-Form-itemLabel spectrum-FieldLabel--left">
+           <span>Reset & Set Computed State</span><br>
+            <span class="acdl-Radio-description">This will reset the ACDL and set the current Computed State (i.e.
+            Array of size one).</span>
+        </label>
+    </form>
+    <br>
+</div>
+
+<script>
+    /**
+     * References to HTML elements
+     */
+    var resetWithState = document.getElementById('reset-with-state');
+    var resetAll = document.getElementById('reset-all');
+
+    /**
+     * Initialize the view, i.e. the elements with the stored settings.
+     * @param info Object containing all previously stored settings.
+     */
+    var initWithSettings = function (info) {
+        if (info.settings) {
+            try {
+                if (info.settings.useComputedState) {
+                    resetWithState.checked = true;
+                } else {
+                    resetAll.checked = true;
+                }
+            } catch
+                (e) {
+                console.warn('Could not init configuration: ' + e);
+            }
+        }
+    };
+
+    /**
+     * Function which returns the current settings as object.
+     * @returns {{Object}}
+     */
+    var getSettings = function () {
+        return {
+            useComputedState: resetWithState.checked
+        };
+    };
+
+
+    /**
+     * Validator function to indicate whether or not the current settings are valid.
+     * @returns {boolean} True indicates "all good", false indicates that the input is invalid.
+     */
+    var validate = function () {
+        return true;
+    };
+
+    window.extensionBridge.register({
+        init: initWithSettings,
+        getSettings: getSettings,
+        validate: validate
+    });
+</script>
+</body>
+</html>

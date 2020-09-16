@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Test Page</title>
+  <script>
+      window.adobeDataLayer = window.adobeDataLayer || [];
+  </script>
+  <script src="resources/adobe-client-data-layer.min.js"></script>
+  <script src="testpage.js"></script>
+  <!--  insert your Launch snippet here-->
+  <script src="./launch.js" async></script>
+  <!--  End of Launch snippet-->
+</head>
+<br>
+
+<p>
+<h3>Triggers</h3>
+<input class="empty" type="button" onclick="pushEmpty()" value="Push [Empty]"> </br></br>
+
+<input class="static" type="button" onclick="pushStatic()" value="Push [Static event]"> </br></br>
+
+<input class="random" type="button" onclick="pushRandom()" value="Push [Random Object]"> </br></br>
+
+<input class="stockprice" type="button" onclick="pushStockUpdate()" value="Push Stock Price Update"> </br></br>
+
+
+<input class="custom" type="button" onclick="pushCustom()" value="Push [Custom event]"> </br></br>
+
+
+
+<input id="custom-event-key" type="textfield" placeholder="...key">
+<input id="custom-event-value" type="textfield" placeholder="...value"></br></br></br>
+</p>
+
+<p>
+  <h3>Action Log</h3>
+  <div id="action-log"></div>
+</p>
+
+</body>
+</html>

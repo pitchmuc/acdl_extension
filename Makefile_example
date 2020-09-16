@@ -1,0 +1,23 @@
+# Set your credentials you got from console.adobe.io here
+
+ORG_ID=xxx@AdobeOrg
+API_KEY=xxx
+TECH_ACCOUNT=xxx@techacct.adobe.com
+CLIENT_SECRET=xx
+PRIVATE_KEY='/path/to/your/private.key'
+
+VERSION=1.0.0
+
+all: pack install
+
+pack:
+	npx @adobe/reactor-packager
+
+install:
+	npx @adobe/reactor-uploader package-adobe-client-data-layer-official-${VERSION}.zip --private-key ${PRIVATE_KEY} --org-id ${ORG_ID} --tech-account-id ${TECH_ACCOUNT} --api-key ${API_KEY} --client-secret ${CLIENT_SECRET}
+
+sandbox:
+	npx @adobe/reactor-sandbox
+
+release:
+	npx @adobe/reactor-releaser --private-key ${PRIVATE_KEY} --org-id ${ORG_ID} --tech-account-id ${TECH_ACCOUNT} --api-key ${API_KEY} --client-secret ${CLIENT_SECRET}

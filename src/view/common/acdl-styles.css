@@ -1,0 +1,43 @@
+
+.acdl-Radio-description {
+    display: block;
+    opacity: 0.6;
+    font-size: 0.9em;
+    margin: 10px 25px;
+}
+
+.acdl-Container {
+    background-color: #ffffff;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.acdl-Textfield--long {
+    width:80%
+}
+
+.acdl-Column {
+    float: left;
+    width: 50%;
+}
+
+.acdl-Row {
+    min-width: 200px;
+    padding: 20px;
+}
+
+.acdl-Row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.acdl-Row .acdl-specific-event-key, .info {
+    display: none;
+}
+
+.acdl-Row .info {
+    border: 1.0625rem solid #e6e6e6;
+    padding: 10px;
+    min-height: 370px;
+}

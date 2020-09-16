@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en" class="spectrum spectrum--medium spectrum--light">
+<head>
+    <meta charset="UTF-8">
+    <title>Adobe Client Data Layer - Push Event to Data Layer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="../common/spectrum/spectrum-global.css">
+    <link rel="stylesheet" href="../common/spectrum/spectrum-medium.css">
+    <link rel="stylesheet" href="../common/spectrum/spectrum-light.css">
+    <link rel="stylesheet" href="../common/spectrum/page-index-vars.css">
+    <link rel="stylesheet" href="../common/spectrum/typography-index-vars.css">
+    <link rel="stylesheet" href="../common/spectrum/button-index-vars.css">
+    <link rel="stylesheet" href="../common/spectrum/icon-index-vars.css">
+    <script src="https://assets.adobedtm.com/activation/reactor/extensionbridge/extensionbridge.min.js"></script>
+    <script>
+        /**
+         * JSON content to be used
+         */
+        var content = '';
+    </script>
+</head>
+<body>
+
+
+<!-------------------------------Section-----------------------------!-->
+<h2 class="spectrum-Heading spectrum-Heading--L">Push an Event to the Data Layer:</h2>
+
+<div class="spectrum-Body spectrum-Body--S">
+    <p>Tip: You can use data elements within your the payload.</p>
+
+    <button id="jsonEditorBtn" class="spectrum-Button spectrum-Button--primary">
+        <span class="spectrum-Button-label">{...} Open JSON Editor</span>
+    </button>
+    <script>
+        document.getElementById('jsonEditorBtn').onclick = function () {
+            var formattedJSON = '';
+            try {
+                formattedJSON = JSON.stringify(JSON.parse(content), undefined, 4);
+            } catch (e) {
+                formattedJSON = content;
+            }
+
+            window.extensionBridge.openCodeEditor({
+                code: formattedJSON,
+                language: 'json'
+            }).then(function (code) {
+                if (typeof code !== 'undefined' && code !== null) {
+                    content = code;
+                }
+            });
+        };
+    </script>
+
+
+</div>
+
+<script>
+
+    /**
+     * Initialize the view, i.e. the elements with the stored settings.
+     * @param info Object containing all previously stored settings.
+     */
+    var initWithSettings = function (info) {
+        var conf = info.settings;
+        console.warn('info', conf);
+        if (typeof conf !== 'undefined' && conf !== null) {
+            content = conf.content;
+        }
+    };
+
+    /**
+     * Function which returns the current settings as object.
+     * @returns {{Object}}
+     */
+    var getSettings = function () {
+        return {
+            'content': content
+        };
+    };
+
+
+    /**
+     * Validator function to indicate whether or not the current settings are valid.
+     * @returns {boolean} True indicates "all good", false indicates that the input is invalid.
+     */
+    var validate = function () {
+        if (typeof content === 'undefined' || content === '') {
+            return false;
+        }
+
+        try {
+            JSON.parse(content);
+            return true;
+        } catch (e) {
+            return false;
+        }
+    };
+
+    window.extensionBridge.register({
+        init: initWithSettings,
+        getSettings: getSettings,
+        validate: validate
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en" class="spectrum spectrum--medium spectrum--light">
+<head>
+    <meta charset="UTF-8">
+    <title>Adobe Client Data Layer - Configuration</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="../common/acdl-styles.css">
+    <link rel="stylesheet" href="../common/spectrum/spectrum-global.css">
+    <link rel="stylesheet" href="../common/spectrum/spectrum-medium.css">
+    <link rel="stylesheet" href="../common/spectrum/spectrum-light.css">
+    <link rel="stylesheet" href="../common/spectrum/page-index-vars.css">
+    <link rel="stylesheet" href="../common/spectrum/typography-index-vars.css">
+    <link rel="stylesheet" href="../common/spectrum/button-index-vars.css">
+    <link rel="stylesheet" href="../common/spectrum/icon-index-vars.css">
+    <link rel="stylesheet" href="../common/spectrum/fieldlabel-index-vars.css">
+    <link rel="stylesheet" href="../common/spectrum/textfield-index-vars.css">
+    <link rel="stylesheet" href="../common/spectrum/accordion-index-vars.css">
+    <script src="https://assets.adobedtm.com/activation/reactor/extensionbridge/extensionbridge.min.js"></script>
+</head>
+
+<body>
+
+<!-------------------------------Section------------------------------!-->
+  <h2 class="spectrum-Heading spectrum-Heading--L">Configuration</h2><br>
+
+  <div class="acdl-Container">
+    <form class="spectrum-Form spectrum-Form--labelsAbove">
+      <div class="spectrum-Form-item">
+        <label class="spectrum-Form-itemLabel " for="dataLayerName">Data Layer Name:</label>
+        <div class="spectrum-Form-itemField">
+          <div class="spectrum-Textfield">
+            <input class="spectrum-Textfield-input" type="text" id="dataLayerName" name="dataLayerName" placeholder="adobeDataLayer" value="adobeDataLayer">
+          </div>
+        </div>
+      </div>
+    </form>
+    <br>
+    <p class="spectrum-Body spectrum-Body--S">Renaming the object will copy the adobeDataLayer to the new object name. There is currently no method to prevent the creation of the "adobeDataLayer" and the creation of a different object instead.</p>
+    <p class="spectrum-Body spectrum-Body--S">We would recommend to use the default name provided by the Adobe Client Data Layer (ACDL), "adobeDataLayer" for your implementation and use renaming in last resort.</p>
+    <br>
+    <h2 class="spectrum-Heading--S">Consideration on renaming</h2>
+    <hr class="spectrum-Rule spectrum-Rule--large">
+    <ul>
+      <li>Possible race condition can happen when other applications try to push element to your other object.</li>
+      <li style="padding-top: 5px">Elements passed to the object before it has been wrapped by the ACDL script can be lost.</li>
+    </ul>
+  </div>
+  <br>
+  <br>
+
+  <h2 class="spectrum-Heading spectrum-Heading--M">Adobe Client Data Layer (ACDL) : Extension Features</h2><br>
+  <div class="acdl-Container">
+    <p>We currently support the <a target="_blank" href="https://unpkg.com/browse/@adobe/adobe-client-data-layer@1.1.0/dist/adobe-client-data-layer.min.js">1.1.0 version of the Adobe Client Data Layer</a>.<br/>
+      The Extension provides you several functionalities within Launch that are directly derived from the ACDL script.<br/>
+      Here comes the list of the capabilities currently supported:</p>
+
+
+    <div class="spectrum-Accordion" role="region">
+      <div class="spectrum-Accordion-item" role="presentation">
+        <h3 class="spectrum-Accordion-itemHeading">
+          <!-- WAI-ARIA 1.1: Item header <button> uses aria-expanded attribute to indicate expanded state. -->
+          <button class="spectrum-Accordion-itemHeader" type="button" id="spectrum-accordion-item-0-header" aria-controls="spectrum-accordion-item-0-content" aria-expanded="true">Events</button>
+          <svg class="spectrum-Icon spectrum-UIIcon-ChevronRightMedium spectrum-Accordion-itemIndicator" focusable="false" aria-hidden="true">
+            <use xlink:href="#spectrum-css-icon-ChevronRightMedium" />
+          </svg>
+        </h3>
+        <div class="spectrum-Accordion-itemContent" role="region" id="spectrum-accordion-item-0-content" aria-labelledby="spectrum-accordion-item-0-header">
+          <h3>Push Listener</h3>
+          <p>
+            The Push Listener enables you to listen to element pushed to the Data Layer object.<br/>
+            You will be able to listen to a all events, all change in the data or a specific event.
+          </p>
+        </div>
+      </div>
+
+      <div class="spectrum-Accordion-item" role="presentation">
+        <h3 class="spectrum-Accordion-itemHeading">
+          <button class="spectrum-Accordion-itemHeader" type="button" id="spectrum-accordion-item-2-header" aria-controls="spectrum-accordion-item-2-content" aria-expanded="false">Actions</button>
+          <svg class="spectrum-Icon spectrum-UIIcon-ChevronRightMedium spectrum-Accordion-itemIndicator" focusable="false" aria-hidden="true">
+            <use xlink:href="#spectrum-css-icon-ChevronRightMedium" />
+          </svg>
+        </h3>
+        <div class="spectrum-Accordion-itemContent" role="region" id="spectrum-accordion-item-2-content" aria-labelledby="spectrum-accordion-item-2-header">
+          <h3>Data Layer Reset</h3>
+          <p>
+            You can reset the Data Layer in order to limit its size.<br/>
+            This action can be helpful for Single Page Application (SPA) in order to limit the size of the object.
+          </p>
+          <h3>Data Layer Push</h3>
+          <p>You can use the extension to push elements to the adobeClientDataLayer.<br/>
+            The extension even provide a way to reference data elements directly in the payload.
+          </p>
+        </div>
+      </div>
+
+      <div class="spectrum-Accordion-item" role="presentation">
+        <h3 class="spectrum-Accordion-itemHeading">
+          <button class="spectrum-Accordion-itemHeader" type="button" id="spectrum-accordion-item-3-header" aria-controls="spectrum-accordion-item-3-content" aria-expanded="false">Data Elements</button>
+          <svg class="spectrum-Icon spectrum-UIIcon-ChevronRightMedium spectrum-Accordion-itemIndicator" focusable="false" aria-hidden="true">
+            <use xlink:href="#spectrum-css-icon-ChevronRightMedium" />
+          </svg>
+        </h3>
+        <div class="spectrum-Accordion-itemContent" role="region" id="spectrum-accordion-item-3-content" aria-labelledby="spectrum-accordion-item-3-header">
+          <h3>Data Layer Computed State</h3>
+          <p>
+            This Data Element will provide the possibility to retrieve the Computed State of the Data Layer.<br/>
+            You can also specify a specific path to return a specific element.
+          </p>
+          <h3>Data Layer Size</h3>
+          <p>This Data Element will return you the amount of elements that have been pushed to the Data Layer object.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <br>
+
+  <h2 class="spectrum-Heading spectrum-Heading--M">ACDL Extension : Additional documentation </h2><br>
+  <div class="acdl-Container">
+  <p>You can find a more detail documentation about this Extension on this url: <a target="_blank" href="https://github.com/pitchmuc/acdl_extension/blob/master/docs/main.md">Github Project</a> </p>
+  </div>
+
+
+<script>
+    /**
+     * References to HTML elements
+     */
+    var dataLayerNameE = document.getElementById('dataLayerName');
+
+    /**
+     * Initialize the view, i.e. the elements with the stored settings.
+     * @param info Object containing all previously stored settings.
+     */
+    var initWithSettings = function (info) {
+        if (info.settings) {
+            try {
+                dataLayerNameE.value = info.settings.dataLayerName;
+            } catch
+                (e) {
+                console.warn('Could not init configuration: ' + e);
+            }
+        }
+    };
+
+    /**
+     * Function which returns the current settings as object.
+     * @returns {{Object}}
+     */
+    var getSettings = function () {
+        return {
+            dataLayerName: dataLayerNameE.value,
+        };
+    };
+
+
+    /**
+     * Validator function to indicate whether or not the current settings are valid.
+     * @returns {boolean} True indicates "all good", false indicates that the input is invalid.
+     */
+    var validate = function () {
+        return dataLayerNameE.value !== '';
+    };
+
+    window.extensionBridge.register({
+        init: initWithSettings,
+        getSettings: getSettings,
+        validate: validate
+    });
+
+    /**
+     * Accordion animation for Extension Features block
+     */
+    var acc = document.getElementsByClassName("spectrum-Accordion-item");
+    var i;
+    for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function() {
+            this.classList.toggle("is-open");
+        });
+    }
+</script>
+</body>
+</html>

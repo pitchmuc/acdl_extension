@@ -1,0 +1,134 @@
+{
+  "displayName": "Adobe Client Data Layer",
+  "name": "adobe-client-data-layer-official",
+  "platform": "web",
+  "version": "1.0.0",
+  "exchangeUrl": "https://www.adobeexchange.com/experiencecloud.details.104231.html",
+  "description": "Provides a simple wrapper around the Adobe Client Data Layer library.",
+  "author": {
+    "name": "Adobe Consulting"
+  },
+  "viewBasePath": "src/view/",
+  "iconPath": "resources/icons/logo.svg",
+  "main": "src/lib/main.js",
+  "configuration": {
+    "viewPath": "configuration/configuration.html",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "type": "object",
+      "properties": {
+        "dataLayerName": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "dataLayerName"
+      ]
+    }
+  },
+  "events": [
+    {
+      "displayName": "Data Pushed",
+      "name": "datalayer-push",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type": "object",
+        "properties": {
+          "method": {
+            "type": "string",
+            "enum": [
+              "allData",
+              "allEvents",
+              "specificEvent"
+            ]
+          },
+          "scope": {
+            "type": "string",
+            "enum": [
+              "all",
+              "future",
+              "past"
+            ]
+          },
+          "eventKey": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "method",
+          "scope"
+        ]
+      },
+      "libPath": "src/lib/events/datalayerPushListener.js",
+      "viewPath": "events/datalayerPushListener.html"
+    }
+  ],
+  "actions": [
+    {
+      "displayName": "Reset Data Layer",
+      "name": "reset-datalayer",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type": "object",
+        "properties": {
+          "useComputedState": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "useComputedState"
+        ]
+      },
+      "libPath": "src/lib/actions/resetDatalayer.js",
+      "viewPath": "actions/resetDatalayer.html"
+    },
+    {
+      "displayName": "Push Event to Data Layer",
+      "name": "push-event-to-datalayer",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "content"
+        ]
+      },
+      "libPath": "src/lib/actions/pushToDatalayer.js",
+      "viewPath": "actions/pushToDatalayer.html"
+    }
+  ],
+  "dataElements": [
+    {
+      "displayName": "Data Layer Size",
+      "name": "datalayer-size",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type": "object",
+        "properties": {}
+      },
+      "libPath": "src/lib/dataElements/datalayerSize.js"
+    },
+    {
+      "displayName": "Data Layer Computed State",
+      "name": "datalayer-computed-state",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "path"
+        ]
+      },
+      "libPath": "src/lib/dataElements/datalayerComputedState.js",
+      "viewPath": "dataElements/datalayerComputedState.html"
+    }
+  ]
+}

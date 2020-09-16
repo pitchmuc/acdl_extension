@@ -1,0 +1,247 @@
+[dir="ltr"] .spectrum-Radio {
+
+  margin-right: calc(var(--spectrum-radio-cursor-hit-x, var(--spectrum-global-dimension-size-100)) * 2);
+}
+
+[dir="rtl"] .spectrum-Radio {
+
+  margin-left: calc(var(--spectrum-radio-cursor-hit-x, var(--spectrum-global-dimension-size-100)) * 2);
+}
+
+.spectrum-Radio {
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -ms-flex-align: start;
+      align-items: flex-start;
+
+  position: relative;
+
+  min-height: var(--spectrum-radio-height, var(--spectrum-global-dimension-size-400));
+  max-width: 100%;
+
+  vertical-align: top;
+}
+
+[dir="ltr"] .spectrum-Radio-input {
+  left: calc(var(--spectrum-radio-cursor-hit-x, var(--spectrum-global-dimension-size-100)) * -1);
+}
+
+[dir="rtl"] .spectrum-Radio-input {
+  right: calc(var(--spectrum-radio-cursor-hit-x, var(--spectrum-global-dimension-size-100)) * -1);
+}
+
+.spectrum-Radio-input {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+  overflow: visible;
+  box-sizing: border-box;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  width: calc(100% + var(--spectrum-radio-cursor-hit-x, var(--spectrum-global-dimension-size-100)) * 2);
+  height: 100%;
+
+  opacity: .0001;
+  z-index: 1;
+
+  cursor: pointer;
+}
+
+.spectrum-Radio-input:disabled {
+    cursor: default;
+  }
+
+.spectrum-Radio-input:checked + .spectrum-Radio-button:before {
+      border-width: calc(var(--spectrum-radio-circle-diameter, var(--spectrum-global-dimension-size-175)) / 2 - var(--spectrum-radio-circle-dot-size, var(--spectrum-global-dimension-static-size-50)) / 2);
+    }
+
+.spectrum-Radio-input.focus-ring + .spectrum-Radio-button:after {
+        margin: calc(var(--spectrum-alias-focus-ring-gap, var(--spectrum-global-dimension-static-size-25)) * -1);
+      }
+
+[dir="ltr"] .spectrum-Radio-label {
+  text-align: left;
+}
+
+[dir="rtl"] .spectrum-Radio-label {
+  text-align: right;
+}
+
+[dir="ltr"] .spectrum-Radio-label {
+  margin-left: var(--spectrum-radio-text-gap, var(--spectrum-global-dimension-size-125));
+}
+
+[dir="rtl"] .spectrum-Radio-label {
+  margin-right: var(--spectrum-radio-text-gap, var(--spectrum-global-dimension-size-125));
+}
+
+.spectrum-Radio-label {
+  margin-top: var(--spectrum-global-dimension-size-65);
+  font-size: var(--spectrum-radio-text-size, var(--spectrum-alias-font-size-default));
+  line-height: 1.49;
+  transition: color var(--spectrum-global-animation-duration-100, 130ms) ease-in-out;
+}
+
+.spectrum-Radio-button {
+  position: relative;
+  box-sizing: border-box;
+  width: var(--spectrum-radio-circle-diameter, var(--spectrum-global-dimension-size-175));
+  height: var(--spectrum-radio-circle-diameter, var(--spectrum-global-dimension-size-175));
+  margin: calc((var(--spectrum-radio-height, var(--spectrum-global-dimension-size-400)) - var(--spectrum-radio-circle-diameter, var(--spectrum-global-dimension-size-175))) / 2) 0;
+
+  -ms-flex-positive: 0;
+
+      flex-grow: 0;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+}
+
+.spectrum-Radio-button:before {
+    display: block;
+    z-index: 0;
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+
+    width: var(--spectrum-radio-circle-diameter, var(--spectrum-global-dimension-size-175));
+    height: var(--spectrum-radio-circle-diameter, var(--spectrum-global-dimension-size-175));
+
+    border-radius: calc(var(--spectrum-radio-circle-diameter, var(--spectrum-global-dimension-size-175)) / 2);
+    border-width: var(--spectrum-radio-circle-border-size, var(--spectrum-alias-border-size-thick));
+    border-style: solid;
+
+    transition: border var(--spectrum-global-animation-duration-100, 130ms) ease-in-out,
+                box-shadow var(--spectrum-global-animation-duration-100, 130ms) ease-in-out;
+  }
+
+.spectrum-Radio-button:after {
+    border-radius: 100%;
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    margin: var(--spectrum-alias-focus-ring-gap, var(--spectrum-global-dimension-static-size-25));
+
+    transition: box-shadow var(--spectrum-global-animation-duration-100, 130ms) ease-out,
+                margin var(--spectrum-global-animation-duration-100, 130ms) ease-out;
+  }
+
+.spectrum-Radio--labelBelow {
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-align: center;
+      align-items: center;
+  height: auto;
+}
+
+.spectrum-Radio--labelBelow .spectrum-Radio-button {
+    -ms-flex-negative: 0;
+        flex-shrink: 0;
+
+    margin: 0;
+  }
+
+.spectrum-Radio--labelBelow .spectrum-Radio-label {
+    margin: var(--spectrum-global-dimension-size-40) 0 0 0;
+  }
+
+.spectrum-Radio-input:checked + .spectrum-Radio-button:before {
+      border-color: var(--spectrum-radio-emphasized-circle-border-color-selected, var(--spectrum-global-color-blue-500));
+    }
+
+.spectrum-Radio-label {
+  color: var(--spectrum-radio-emphasized-text-color, var(--spectrum-alias-text-color));
+}
+
+.spectrum-Radio-button:before {
+    background-color: var(--spectrum-radio-emphasized-circle-background-color, var(--spectrum-global-color-gray-75));
+    border-color: var(--spectrum-radio-emphasized-circle-border-color, var(--spectrum-global-color-gray-600));
+  }
+
+.spectrum-Radio:hover .spectrum-Radio-button:before {
+        border-color: var(--spectrum-radio-emphasized-circle-border-color-hover, var(--spectrum-global-color-gray-700));
+        box-shadow: none;
+      }
+
+.spectrum-Radio:hover .spectrum-Radio-input:checked + .spectrum-Radio-button:before {
+        border-color: var(--spectrum-radio-emphasized-circle-border-color-selected-hover, var(--spectrum-global-color-blue-600));
+      }
+
+.spectrum-Radio:hover .spectrum-Radio-label {
+      color: var(--spectrum-radio-emphasized-text-color-hover, var(--spectrum-alias-text-color-hover));
+    }
+
+.spectrum-Radio:active .spectrum-Radio-button:before {
+        border-color: var(--spectrum-radio-emphasized-circle-border-color-down, var(--spectrum-global-color-gray-800));
+      }
+
+.spectrum-Radio:active .spectrum-Radio-input:checked + .spectrum-Radio-button:before {
+        border-color: var(--spectrum-radio-emphasized-circle-border-color-selected-down, var(--spectrum-global-color-blue-700));
+      }
+
+.spectrum-Radio:active .spectrum-Radio-label {
+      color: var(--spectrum-radio-emphasized-text-color-down, var(--spectrum-alias-text-color-down));
+    }
+
+.spectrum-Radio--quiet .spectrum-Radio-input:checked + .spectrum-Radio-button:before {
+      border-color: var(--spectrum-radio-quiet-circle-border-color-selected, var(--spectrum-global-color-gray-700));
+    }
+
+.spectrum-Radio--quiet:hover .spectrum-Radio-input:checked + .spectrum-Radio-button:before {
+        border-color: var(--spectrum-radio-quiet-circle-border-color-selected-hover, var(--spectrum-global-color-gray-800));
+      }
+
+.spectrum-Radio--quiet:active .spectrum-Radio-input:checked + .spectrum-Radio-button:before {
+        border-color: var(--spectrum-radio-quiet-circle-border-color-selected-down, var(--spectrum-global-color-gray-900));
+      }
+
+.spectrum-Radio.is-invalid:hover .spectrum-Radio-input + .spectrum-Radio-button:before, .spectrum-Radio--quiet.is-invalid:hover .spectrum-Radio-input + .spectrum-Radio-button:before {
+        border-color: var(--spectrum-radio-emphasized-circle-border-color-error-hover, var(--spectrum-global-color-red-600));
+      }
+
+.spectrum-Radio.is-invalid:hover .spectrum-Radio-label, .spectrum-Radio--quiet.is-invalid:hover .spectrum-Radio-label {
+      color: var(--spectrum-radio-emphasized-circle-border-color-error-hover, var(--spectrum-global-color-red-600));
+    }
+
+.spectrum-Radio.is-invalid:active .spectrum-Radio-input + .spectrum-Radio-button:before, .spectrum-Radio--quiet.is-invalid:active .spectrum-Radio-input + .spectrum-Radio-button:before {
+        border-color: var(--spectrum-radio-emphasized-circle-border-color-error-down, var(--spectrum-global-color-red-700));
+      }
+
+.spectrum-Radio.is-invalid:active .spectrum-Radio-label, .spectrum-Radio--quiet.is-invalid:active .spectrum-Radio-label {
+      color: var(--spectrum-radio-emphasized-circle-border-color-error-down, var(--spectrum-global-color-red-700));
+    }
+
+.spectrum-Radio.is-invalid .spectrum-Radio-button:before, .spectrum-Radio.is-invalid .spectrum-Radio-input:checked + .spectrum-Radio-button:before, .spectrum-Radio--quiet.is-invalid .spectrum-Radio-button:before, .spectrum-Radio--quiet.is-invalid .spectrum-Radio-input:checked + .spectrum-Radio-button:before {
+        border-color: var(--spectrum-radio-emphasized-circle-border-color-error, var(--spectrum-global-color-red-500));
+      }
+
+.spectrum-Radio.is-invalid .spectrum-Radio-label, .spectrum-Radio--quiet.is-invalid .spectrum-Radio-label {
+      color: var(--spectrum-radio-emphasized-circle-border-color-error, var(--spectrum-global-color-red-500));
+    }
+
+.spectrum-Radio .spectrum-Radio-input:disabled + .spectrum-Radio-button:before, .spectrum-Radio .spectrum-Radio-input:checked:disabled + .spectrum-Radio-button:before {
+      border-color: var(--spectrum-radio-emphasized-circle-border-color-disabled, var(--spectrum-global-color-gray-400));
+    }
+
+.spectrum-Radio .spectrum-Radio-input:disabled ~ .spectrum-Radio-label, .spectrum-Radio .spectrum-Radio-input:checked:disabled ~ .spectrum-Radio-label {
+    color: var(--spectrum-radio-emphasized-text-color-disabled, var(--spectrum-alias-text-color-disabled));
+  }
+
+.spectrum-Radio .spectrum-Radio-input.focus-ring + .spectrum-Radio-button:before, .spectrum-Radio:hover .spectrum-Radio-input.focus-ring + .spectrum-Radio-button:before, .spectrum-Radio--quiet .spectrum-Radio-input.focus-ring + .spectrum-Radio-button:before, .spectrum-Radio--quiet:hover .spectrum-Radio-input.focus-ring + .spectrum-Radio-button:before {
+        border-color: var(--spectrum-radio-circle-border-color-key-focus, var(--spectrum-global-color-gray-700));
+      }
+
+.spectrum-Radio .spectrum-Radio-input.focus-ring + .spectrum-Radio-button:after, .spectrum-Radio:hover .spectrum-Radio-input.focus-ring + .spectrum-Radio-button:after, .spectrum-Radio--quiet .spectrum-Radio-input.focus-ring + .spectrum-Radio-button:after, .spectrum-Radio--quiet:hover .spectrum-Radio-input.focus-ring + .spectrum-Radio-button:after {
+        box-shadow: 0 0 0 var(--spectrum-radio-focus-ring-size-key-focus, var(--spectrum-alias-focus-ring-size)) var(--spectrum-radio-focus-ring-color-key-focus, var(--spectrum-alias-focus-ring-color));
+      }
+
+.spectrum-Radio .spectrum-Radio-input.focus-ring:checked + .spectrum-Radio-button:before, .spectrum-Radio:hover .spectrum-Radio-input.focus-ring:checked + .spectrum-Radio-button:before, .spectrum-Radio--quiet .spectrum-Radio-input.focus-ring:checked + .spectrum-Radio-button:before, .spectrum-Radio--quiet:hover .spectrum-Radio-input.focus-ring:checked + .spectrum-Radio-button:before {
+        border-color: var(--spectrum-radio-emphasized-circle-border-color-selected-hover, var(--spectrum-global-color-blue-600));
+      }

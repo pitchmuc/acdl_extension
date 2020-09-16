@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="spectrum spectrum--medium spectrum--light">
+<head>
+    <meta charset="UTF-8">
+    <title>Adobe Client Data Layer - Data Layer Push</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../common/spectrum/spectrum-global.css">
+    <link rel="stylesheet" href="../common/spectrum/spectrum-medium.css">
+    <link rel="stylesheet" href="../common/spectrum/spectrum-light.css">
+    <link rel="stylesheet" href="../common/spectrum/page-index-vars.css">
+    <link rel="stylesheet" href="../common/spectrum/typography-index-vars.css">
+    <link rel="stylesheet" href="../common/spectrum/button-index-vars.css">
+    <link rel="stylesheet" href="../common/spectrum/icon-index-vars.css">
+    <link rel="stylesheet" href="../common/spectrum/fieldlabel-index-vars.css">
+    <link rel="stylesheet" href="../common/spectrum/textfield-index-vars.css">
+    <link rel="stylesheet" href="../common/spectrum/radio-index-vars.css">
+    <link rel="stylesheet" href="../common/spectrum/fieldgroup-index-vars.css">
+    <link rel="stylesheet" type="text/css" href="../common/acdl-styles.css">
+    <script src="https://assets.adobedtm.com/activation/reactor/extensionbridge/extensionbridge.min.js"></script>
+</head>
+<body>
+
+
+<!-------------------------------Section-----------------------------!-->
+<h2 class="spectrum-Heading spectrum-Heading--L">Data Layer Push Settings</h2>
+
+<form class="spectrum-Form spectrum-Form--labelsAbove">
+    <div class="acdl-Row">
+        <div class="acdl-Column">
+            <h4 class="spectrum-Heading spectrum-Heading--M">Listen to</h4><br>
+
+            <div class="spectrum-FieldGroup spectrum-FieldGroup--vertical">
+                <div class="spectrum-Radio">
+                    <input type="radio" name="method" class="spectrum-Radio-input" id="all-data" value="allData" checked>
+                    <span class="spectrum-Radio-button"></span>
+                    <label class="spectrum-Radio-label" for="all-data">All Data Changes</label>
+                </div>
+                <div class="spectrum-Radio">
+                    <input type="radio" name="method" class="spectrum-Radio-input" id="all-events" value="allEvents">
+                    <span class="spectrum-Radio-button"></span>
+                    <label class="spectrum-Radio-label" for="all-events">All Events</label>
+                </div>
+                <div class="spectrum-Radio">
+                    <input type="radio" name="method" class="spectrum-Radio-input" id="specific-event" value="specificEvent">
+                    <span class="spectrum-Radio-button"></span>
+                    <label class="spectrum-Radio-label" for="specific-event">Specific Event</label>
+                </div>
+            </div>
+            <br><br>
+            <div class="acdl-specific-event-key specific-event__info">
+                <label for="eventKey" class="spectrum-FieldLabel"><strong>Event / Key to register for:</strong></label>
+                <div class="spectrum-Textfield">
+                    <input type="text" id="eventKey" name="eventKey" placeholder="custom.onclick.xy" class="spectrum-Textfield-input">
+                </div>
+            </div>
+        </div>
+
+        <div class="acdl-Column">
+            <h4 class="spectrum-Heading spectrum-Heading--M">Time scope for event listener</h4><br>
+
+            <div class="spectrum-FieldGroup spectrum-FieldGroup--vertical">
+                <div class="spectrum-Radio">
+                    <input type="radio" name="scope" class="spectrum-Radio-input" id="scope-all" value="all" checked>
+                    <span class="spectrum-Radio-button"></span>
+                    <label class="spectrum-Radio-label" for="scope-all">All</label>
+                </div>
+                <div class="spectrum-Radio">
+                    <input type="radio" name="scope" class="spectrum-Radio-input" id="scope-future" value="future">
+                    <span class="spectrum-Radio-button"></span>
+                    <label class="spectrum-Radio-label" for="scope-future">Future</label>
+                </div>
+                <div class="spectrum-Radio">
+                    <input type="radio" name="scope" class="spectrum-Radio-input" id="scope-past" value="past">
+                    <span class="spectrum-Radio-button"></span>
+                    <label class="spectrum-Radio-label" for="scope-past">Past</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="acdl-Row">
+        <div class="acdl-Column">
+            <h4 class="spectrum-Heading spectrum-Heading--S">Examples</h4><br>
+            <div class="all-data__info info">
+                <p><strong>Listen to all data changes</strong></p>
+                Listening to all data changes will trigger the rule when data are being pushed to the Data Layer.<br/>
+                <br/>
+                These pushes will trigger the rule:<br/>
+                <code>adobeDataLayer.push({"data":{"foo":"bar","key":"value"}})</code><br/>
+                or<br/>
+                <code>adobeDataLayer.push({"event":"myEvent","data":{"foo":"bar","key":"value"}})</code><br/>
+                <br/>
+                This push element <b>will not</b> trigger the rule, because "events" are not data themselves:<br/>
+                <code>adobeDataLayer.push({"event":"myEvent"})</code><br/>
+            </div>
+            <div class="all-events__info info">
+                <p><strong>Listen to all events</strong></p>
+                Listening to all event will trigger the rule when an event are being pushed to the Data Layer.<br/>
+                <br/>
+                This push will trigger the rule:<br/>
+                <code>adobeDataLayer.push({"event":"myEvent","data":{"foo":"bar","key":"value"}})</code><br/>
+                <br/>
+                This push element <b>will not</b> trigger the rule, because no "event" key is being pushed:<br/>
+                <code>adobeDataLayer.push({"data":{"foo":"bar","key":"value"}})</code><br/>
+            </div>
+            <div class="specific-event__info info">
+                <p><strong>Listen to specific event</strong></p>
+                Listening to a specific event will trigger the rule when a specific event value is attached to "event" key being sent to the Data Layer.<br/>
+                If you are listening to "myEvent".<br/>
+                <br/>
+                This push will trigger the rule:<br/>
+                <code>adobeDataLayer.push({"event":"myEvent","data":{"foo":"bar","key":"value"}})</code><br/>
+                <br/>
+                This push element <b>will not</b> trigger the rule, because the value of the "event" key is not the correct one:<br/>
+                <code>adobeDataLayer.push({"event":"otherEvent","data":{"foo":"bar","key":"value"}})</code><br/>
+            </div>
+        </div>
+        <div class="acdl-Column">
+            <h4 class="spectrum-Heading spectrum-Heading--S">Scope Examples</h4><br>
+            <div class="scope-all__info info">
+                <p><strong>Setting scope to "all"</strong></p>
+                Your event listener will trigger for past and future events that have been or will be pushed to the Data Layer.<br/>
+            </div>
+            <div class="scope-future__info info">
+                <p><strong>Setting scope to "future"</strong></p>
+                Your event listener will trigger for future events that will be pushed to the Data Layer only.<br/>
+            </div>
+            <div class="scope-past__info info">
+                <p><strong>Setting scope to "past"</strong></p>
+                Your event listener will trigger for past events that have been pushed to the Data Layer only.<br/>
+            </div>
+        </div>
+    </div>
+    <div class="acdl-Row">
+        <h4 class="spectrum-Heading spectrum-Heading--S">Event Object</h4>
+        <p>This event handler will pass an object with 3 information that can be used in the action script:</p>
+        <ul>
+            <li>message : what has been sent during that push </li>
+            <li style="padding-top: 5px">beforeState : what was in the Data Layer before that push is merged</li>
+            <li style="padding-top: 5px">afterState : what is in the Data Layer after that push is merged</li>
+        </ul>
+    </div>
+</form>
+
+<script>
+    /**
+     * References to HTML elements
+     * methodE can be one of three values: allData, allEvents, specificEvent
+     */
+    var eventKeyE = document.getElementById('eventKey');
+
+    /**
+     * Initialize the view, i.e. the elements with the stored settings.
+     * @param info Object containing all previously stored settings.
+     */
+    var initWithSettings = function (info) {
+        if (info.settings) {
+            try {
+                var selectedMethod = info.settings.method;
+                var eventKey = info.settings.eventKey;
+                var scope = info.settings.scope;
+
+                //init method radiogroup
+                if (typeof selectedMethod !== 'undefined') {
+                    var methodE = document.querySelector('input[value="' + selectedMethod + '"]');
+                    methodE.checked = true;
+                }
+                //init eventKey input
+                if (typeof eventKey !== 'undefined') {
+                    eventKeyE.value = eventKey;
+                }
+                //init scope radiogroup
+                if (typeof scope !== 'undefined') {
+                    var scopeE = document.querySelector('input[value="' + scope + '"]');
+                    scopeE.checked = true;
+                }
+            } catch
+                (e) {
+                console.warn('Could not init configuration: ' + e);
+            }
+        }
+    };
+
+    /**
+     * Function which returns the current settings as object.
+     * @returns {{Object}}
+     */
+    var getSettings = function () {
+        var resultMethod = document.querySelector('input[name="method"]:checked').value;
+        var resultScope = document.querySelector('input[name="scope"]:checked').value;
+        var result = {
+            method: resultMethod,
+            scope: resultScope
+        };
+
+        if (resultMethod === 'specificEvent') {
+            result.eventKey = eventKeyE.value
+        }
+
+        return result;
+    };
+
+    /**
+     * Validator function to indicate whether or not the current settings are valid.
+     * @returns {boolean} True indicates "all good", false indicates that the input is invalid.
+     */
+    var validate = function () {
+        var resultMethod = document.querySelector('input[name="method"]:checked').value;
+        if (resultMethod === 'specificEvent') {
+            return eventKeyE.value !== '';
+        }
+
+        return true;
+    };
+
+    window.extensionBridge.register({
+        init: initWithSettings,
+        getSettings: getSettings,
+        validate: validate
+    });
+
+    var radios = document.getElementsByClassName("spectrum-Radio-input");
+    for (var i = 0; i < radios.length; i++) {
+        if (radios[i].checked) {
+            toggleExample(radios[i], 'block')
+        }
+        radios[i].addEventListener("change", function() {
+            if (this.checked) {
+                var siblings = document.getElementsByName(this.name);
+                for (var j = 0; j < siblings.length; j++) {
+                    toggleExample(siblings[j], 'none');
+                }
+                toggleExample(this, 'block');
+            }
+        });
+    }
+
+    function toggleExample(radio, clazz) {
+        var exampleBlockId = radio.id + "__info";
+        var exampleBlock = document.getElementsByClassName(exampleBlockId);
+        for (var i = 0; i < exampleBlock.length; i++) {
+            exampleBlock[i].style.display = clazz;
+        }
+    }
+</script>
+</body>
+</html>
